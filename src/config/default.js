@@ -5,6 +5,9 @@ module.exports = {
       mongoDb: {
         url: process.env.MONGODB_URL,
       },
+      redis: {
+        url: process.env.REDIS_URL,
+      },
     },
   },
   accessToken: {
