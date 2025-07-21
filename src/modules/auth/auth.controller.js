@@ -106,7 +106,11 @@ class AuthController {
         { userId: user._id },
         config.get("refreshToken.secretKey")
       );
-      await setCache(`refreshToken:${refreshToken}`, refreshToken);
+      await setCache(
+        `refreshToken:${refreshToken}`,
+        refreshToken,
+        7 * 24 * 60 * 60
+      );
 
       return res.status(200).json({
         message: "Login successful",
