@@ -1,7 +1,6 @@
 const { default: autoBind } = require("auto-bind");
 const { isValidObjectId } = require("mongoose");
 const { hashPassword } = require("../../utils/password.util");
-const { editUserValidationSchema } = require("./user.validation");
 
 class UserController {
   #service;
@@ -11,15 +10,7 @@ class UserController {
   }
   async edit(req, res, next) {
     try {
-      const result = editUserValidationSchema.validate(req.body, {
-        abortEarly: false,
-      });
-      if (result.error) {
-        return res.status(400).json({
-          errors: result.error.details.map((err) => err.message),
-        });
-      }
-      const { id: userId } = req.params;
+      const { userId } = req.user;
       if (!isValidObjectId(userId)) {
         return res.status(400).json({ message: "Invalid user ID format" });
       }
