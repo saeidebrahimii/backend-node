@@ -10,6 +10,15 @@ class UserController {
   }
   async edit(req, res, next) {
     try {
+      const userValidationSchema = require("./validation/userValidation");
+      const result = userValidationSchema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (result.error) {
+        return res.status(400).json({
+          errors: result.error.details.map((err) => err.message),
+        });
+      }
       const { id: userId } = req.params;
       if (isValidObjectId(userId)) {
         return res.status(400).json({ message: "Invalid user ID format" });
