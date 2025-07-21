@@ -1,3 +1,4 @@
+const { setCache } = require("../../services/redis.service");
 const {
   hashPassword,
   compareHashPassword,
@@ -102,6 +103,7 @@ class AuthController {
         { userId: user._id },
         config.get("refreshToken.secretKey")
       );
+      await setCache(`refreshToken:${refreshToken}`, refreshToken);
 
       return res.status(200).json({
         message: "Login successful",
