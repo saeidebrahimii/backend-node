@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
-const userValidationSchema = Joi.object({
-  firstName: Joi.string().min(2).max(50).required().messages({
+const editUserValidationSchema = Joi.object({
+  firstName: Joi.string().min(2).max(50).optional().messages({
     "string.base": "First name must be a string",
     "string.empty": "First name is required",
     "string.min": "First name must be at least 3 characters",
@@ -9,7 +9,7 @@ const userValidationSchema = Joi.object({
     "any.required": "First name is required",
   }),
 
-  lastName: Joi.string().min(2).max(50).required().messages({
+  lastName: Joi.string().min(2).max(50).optional().messages({
     "string.base": "Last name must be a string",
     "string.empty": "Last name is required",
     "string.min": "Last name must be at least 3 characters",
@@ -19,7 +19,7 @@ const userValidationSchema = Joi.object({
 
   email: Joi.string()
     .email({ tlds: { allow: false } })
-    .required()
+    .optional()
     .messages({
       "string.email": "Please enter a valid email address",
       "any.required": "Email is required",
@@ -27,16 +27,16 @@ const userValidationSchema = Joi.object({
 
   mobile: Joi.string()
     .pattern(/^09\d{9}$/)
-    .required()
+    .optional()
     .messages({
       "string.pattern.base": "Please enter a valid Iranian mobile number",
       "any.required": "Mobile number is required",
     }),
 
-  password: Joi.string().min(8).required().messages({
+  password: Joi.string().min(8).optional().messages({
     "string.min": "Password must be at least 6 characters",
     "any.required": "Password is required",
   }),
 });
 
-module.exports = userValidationSchema;
+module.exports = { editUserValidationSchema };
