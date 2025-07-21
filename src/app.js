@@ -1,0 +1,16 @@
+if (process.env.NODE_ENV === "development") {
+  require("dotenv").config({ path: ".env.development" });
+} else {
+  require("dotenv").config();
+}
+const express = require("express");
+const morgan = require("morgan");
+const errorHandler = require("./middlewares/errorHandler");
+const app = express();
+app.use(morgan("dev"));
+
+app.use((req, res) => {
+  return res.status(404).json({ message: "route not found." });
+});
+app.use(errorHandler);
+module.exports = app;

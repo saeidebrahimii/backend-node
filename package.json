@@ -1,0 +1,22 @@
+{
+  "name": "backend-node",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development NODE_CONFIG_DIR=./src/config nodemon src/server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "config": "^4.0.1",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.10"
+  }
+}
