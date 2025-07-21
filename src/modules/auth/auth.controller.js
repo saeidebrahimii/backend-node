@@ -1,4 +1,4 @@
-const { setCache } = require("../../services/redis.service");
+const { setCache, getCache } = require("../../services/redis.service");
 const {
   hashPassword,
   compareHashPassword,
@@ -6,6 +6,7 @@ const {
 const {
   generateAccessToken,
   generateRefreshToken,
+  verifyJWT,
 } = require("../../utils/token.util");
 const {
   registerValidationSchema,
@@ -119,6 +120,41 @@ class AuthController {
           refreshToken,
         },
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async refreshToken(req, res, next) {
+    try {
+      const { token: refreshTokenFromClient } = req.body;
+      const cachedToken = await getCache(
+        `refreshToken:${refreshTokenFromClient}`
+      );
+      if (!cachedToken) {
+        return res.status(403).json({ message: "Token does not exist" });
+      }
+      try {
+        const decoded = await verifyJWT(
+          refreshTokenFromClient,
+          config.get("refreshToken.secretKey")
+        );
+        const accessToken = await generateAccessToken(
+          decoded,
+          config.get("accessToken.secretKey")
+        );
+        return res.json({ accessToken });
+      } catch (error) {
+        return res.status(403).json({ message: "Refresh token has expired" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+  async logout(req, res, next) {
+    try {
+      const { token } = req.body;
+      await deleteCache(`refreshToken:${token}`);
+      return res.json({ message: "logout successfully" });
     } catch (error) {
       next(error);
     }
