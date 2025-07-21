@@ -8,9 +8,9 @@ const { captchaGuard } = require("../../middlewares/guard/captcha.guard");
 const router = Router();
 router.put(
   "/",
+  validate(editUserValidationSchema),
   authGuard,
   captchaGuard,
-  validate(editUserValidationSchema),
   userController.edit
 );
 

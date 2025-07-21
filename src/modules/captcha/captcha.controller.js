@@ -4,9 +4,10 @@ const { setCache, getCache } = require("../../services/redis.service");
 
 class CaptchaController {
   async get(req, res, next) {
+    const EXPIRE_CAPTCHA = 2 * 60; //2 minutes
     const captcha = generateCaptcha();
     const id = uuidv4();
-    await setCache(`captcha:${id}`, { captcha }, 2 * 60);
+    await setCache(`captcha:${id}`, { captcha }, EXPIRE_CAPTCHA);
     return res.json({ captcha, id });
   }
 }
