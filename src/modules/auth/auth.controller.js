@@ -1,4 +1,5 @@
 const { setCache, getCache } = require("../../services/redis.service");
+const { default: autoBind } = require("auto-bind");
 const {
   hashPassword,
   compareHashPassword,
@@ -18,6 +19,7 @@ class AuthController {
   #service;
   constructor() {
     this.#service = require("../users/user.service");
+    autoBind(this);
   }
   async register(req, res, next) {
     try {

@@ -1,3 +1,4 @@
+const { default: autoBind } = require("auto-bind");
 const userModel = require("./user.model");
 
 class UserService {
