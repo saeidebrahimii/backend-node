@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development NODE_CONFIG_DIR=./src/config nodemon src/server"
+    "dev": "cross-env NODE_ENV=development NODE_CONFIG_DIR=./src/config nodemon src/server",
+    "start": "cross-env NODE_ENV=production NODE_CONFIG_DIR=./src/config node src/server"
   },
   "keywords": [],
   "author": "",
