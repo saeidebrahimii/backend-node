@@ -114,14 +114,14 @@ For questions, feel free to open an issue or reach out.
 Before running the project, create a `.env` file in the root directory and add the following configuration:
 
 ```
-PORT=3000
+PORT=
 #MONGODB
-MONGODB_URL=mongodb://127.0.0.1:27017/test5
+MONGODB_URL=
 #REDIS
-REDIS_URL=redis://localhost:6379
+REDIS_URL=
 #TOKEN
-SECRET_TOKEN_ACCESS_KEY='s2MY22kdaNNwyT0r9kWkGL4WAGN8KbEaFwQVy09+JFNENGyEP4Yp1o2jPOP7IrlYx/rGqeQbo06u3ROserjLBgftGvUFr1HZSIUK31xGmIpRok9v6sZZ2fVlrG823SUDKYZzU1uBad7hvNY3VPBtIrx8w/Jm//pQgCUMsZ5gQpA='
-SECRET_TOKEN_REFRESH_KEY='ynQUrcnkApAsyGsLiGweKylyS9dNLFgEtsIFAi9eXxMFj48smr3NwGIEEOvfPhY2zuCrXh1Ha4a5dnVO2nSFYdusKf0HaZHFthN2fXK7riuhgXs1mUfpGAYykL25TW7YXtcUg3Y8OzIIqqCHbkSdQkMVWxRpbfFnJDrJ7sx0l/Q='
+SECRET_TOKEN_ACCESS_KEY=
+SECRET_TOKEN_REFRESH_KEY=
 ```
 
 ## 🧾 Full Project Structure
