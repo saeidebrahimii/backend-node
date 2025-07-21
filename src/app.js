@@ -10,6 +10,7 @@ const { userRoutes } = require("./modules/users/user.routes");
 const { authRoutes } = require("./modules/auth/auth.routes");
 const app = express();
 require("./config/db/mongoose");
+app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/users", userRoutes);
