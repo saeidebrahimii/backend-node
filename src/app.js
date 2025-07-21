@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const errorHandler = require("./middlewares/errorHandler");
 const { userRoutes } = require("./modules/users/user.routes");
 const { authRoutes } = require("./modules/auth/auth.routes");
+const { captchaRoutes } = require("./modules/captcha/captcha.routes");
 const app = express();
 require("./config/db/mongoose");
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(morgan("dev"));
 
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
+app.use("/captcha", captchaRoutes);
 app.use((req, res) => {
   return res.status(404).json({ message: "route not found." });
 });
