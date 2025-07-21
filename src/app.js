@@ -7,6 +7,7 @@ const express = require("express");
 const morgan = require("morgan");
 const errorHandler = require("./middlewares/errorHandler");
 const app = express();
+require("./config/db/mongoose");
 app.use(morgan("dev"));
 
 app.use((req, res) => {
