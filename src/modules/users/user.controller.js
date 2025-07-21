@@ -20,7 +20,7 @@ class UserController {
         });
       }
       const { id: userId } = req.params;
-      if (isValidObjectId(userId)) {
+      if (!isValidObjectId(userId)) {
         return res.status(400).json({ message: "Invalid user ID format" });
       }
       const { firstName, lastName, email, password, mobile } = req.body;
